@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
@@ -8,6 +10,20 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
+  List info=[];
+  _initData(){
+    DefaultAssetBundle.of(context).loadString("json/home_info.json").then((value){
+      info = json.decode(value);
+    });
+  }
+
+  @override
+  void initstate(){
+    super.initState();
+    _initData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -94,7 +110,7 @@ class _HomepageState extends State<Homepage> {
           ),
           Expanded(
               child: ListView.builder(
-              itemCount: 10,
+              itemCount: 17,
               itemBuilder: (_, i){
                 return Container(
                   margin: EdgeInsets.all(10),
@@ -117,20 +133,16 @@ class _HomepageState extends State<Homepage> {
                     children: [
                       Row(
                         children: [
-                          Container(
-                            child: Image.asset(
-                              'images/arduino-UNO.jpg',
-                              height: 60,
-                              width: 60,
-                            ),
+                          Image.asset(
+                            info[i]['img'],
+                            height: 60,
+                            width: 60,
                           ),
-                          SizedBox(width: 15,),
-                          Container(
-                            child: Text('Arduino UNO',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
+                          const SizedBox(width: 15,),
+                          Text(info[i]['title'],
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
                             ),
                           )
                         ],
@@ -138,15 +150,15 @@ class _HomepageState extends State<Homepage> {
                       Expanded(child: Container()),
                       Row(
                         children: [
-                          const Text('35 Pcs',
-                            style: TextStyle(
+                          Text(info[i]['available'],
+                            style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                           Expanded(child: Container()),
-                          const Text('55 Pcs',
-                            style: TextStyle(
+                          Text(info[i]['total'],
+                            style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),
@@ -155,19 +167,15 @@ class _HomepageState extends State<Homepage> {
                       ),
                       Row(
                         children: [
-                          Container(
-                            child: const Text('Student have',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
+                          const Text('Available',
+                            style: TextStyle(
+                              fontSize: 14,
                             ),
                           ),
                           Expanded(child: Container()),
-                          Container(
-                            child: const Text('In Stocks',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
+                          const Text('Total Pcs',
+                            style: TextStyle(
+                              fontSize: 14,
                             ),
                           ),
                         ],
