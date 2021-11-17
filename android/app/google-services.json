@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "890926855707",
+    "project_id": "iot-inventory-f39da",
+    "storage_bucket": "iot-inventory-f39da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890926855707:android:3b560d87e2eee2721ceabe",
+        "android_client_info": {
+          "package_name": "com.example.iot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "890926855707-baqkm6cigjkqgjv2uo39mdsq8sf7uo1s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCalJbiBaXdmw8kmOY2_FsFlwg0oa7TIFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890926855707-baqkm6cigjkqgjv2uo39mdsq8sf7uo1s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

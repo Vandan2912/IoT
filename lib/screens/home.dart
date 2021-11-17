@@ -1,28 +1,30 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iot/controller/component_list_controller.dart';
+import 'package:iot/model/component.dart';
+import 'package:iot/ui%20components/itemcard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
-class Homepage extends StatefulWidget {
-  const Homepage({Key? key}) : super(key: key);
+class Homepage1 extends StatefulWidget {
+  const Homepage1({Key? key}) : super(key: key);
 
   @override
-  _HomepageState createState() => _HomepageState();
+  _Homepage1State createState() => _Homepage1State();
 }
 
-class _HomepageState extends State<Homepage> {
+class _Homepage1State extends State<Homepage1> {
+  List info = [];
 
-  List info=[];
-  _initData(){
-    DefaultAssetBundle.of(context).loadString("json/home_info.json").then((value){
-      info = json.decode(value);
-    });
-  }
-
-  @override
-  void initstate(){
-    super.initState();
-    _initData();
-  }
+  // _initData() {}
+  //
+  // @override
+  // void initstate() {
+  //   super.initState();
+  //   _initData();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -108,27 +110,24 @@ class _HomepageState extends State<Homepage> {
           const SizedBox(
             height: 20,
           ),
-          Expanded(
-              child: ListView.builder(
+          ListView.builder(
               itemCount: 17,
-              itemBuilder: (_, i){
+              itemBuilder: (_, i) {
                 return Container(
                   margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(15),
                   width: double.infinity,
                   height: 175,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white54,
-                    border: Border.all(color: Colors.grey.withOpacity(0.5)),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 3,
-                        offset: Offset(5,5),
-                        color: Colors.black.withOpacity(0.1)
-                      )
-                    ]
-                  ),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white54,
+                      border: Border.all(color: Colors.grey.withOpacity(0.5)),
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 3,
+                            offset: Offset(5, 5),
+                            color: Colors.black.withOpacity(0.1))
+                      ]),
                   child: Column(
                     children: [
                       Row(
@@ -138,8 +137,11 @@ class _HomepageState extends State<Homepage> {
                             height: 60,
                             width: 60,
                           ),
-                          const SizedBox(width: 15,),
-                          Text(info[i]['title'],
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            info[i]['title'],
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -150,14 +152,16 @@ class _HomepageState extends State<Homepage> {
                       Expanded(child: Container()),
                       Row(
                         children: [
-                          Text(info[i]['available'],
+                          Text(
+                            info[i]['available'],
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                           Expanded(child: Container()),
-                          Text(info[i]['total'],
+                          Text(
+                            info[i]['total'],
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -167,13 +171,15 @@ class _HomepageState extends State<Homepage> {
                       ),
                       Row(
                         children: [
-                          const Text('Available',
+                          const Text(
+                            'Available',
                             style: TextStyle(
                               fontSize: 14,
                             ),
                           ),
                           Expanded(child: Container()),
-                          const Text('Total Pcs',
+                          const Text(
+                            'Total Pcs',
                             style: TextStyle(
                               fontSize: 14,
                             ),
@@ -184,9 +190,27 @@ class _HomepageState extends State<Homepage> {
                   ),
                 );
               })
-          )
         ],
       ),
+    );
+  }
+}
+
+
+class HomePage extends StatelessWidget {
+  const HomePage();
+  @override
+  Widget build(BuildContext context) {
+    // List<Component> componentlist = Provider.of<List<Component>>(context) ;
+    final componentListController = Get.put(ComponentController());
+    print(componentListController.componentList.value);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Components"),
+      ),
+      body: ListView.builder(
+          itemCount: componentListController.componentList.value.length,
+          itemBuilder: (context, index) => ItemCard(component: componentListController.componentList[index]),),
     );
   }
 }
