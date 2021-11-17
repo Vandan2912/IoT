@@ -13,6 +13,4 @@ class ComponentController extends GetxController{
     print("component list : $componentList");
     super.onInit();
   }
-
-
 }

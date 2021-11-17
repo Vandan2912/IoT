@@ -21,11 +21,13 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Components"),
       ),
-      body: ListView.builder(
-        itemCount: componentListController.componentList.value.length,
-        itemBuilder: (context, index) =>
-            ItemCard(component: componentListController.componentList[index]),
-      ),
+      body: Obx(() =>
+        ListView.builder(
+          itemCount: componentListController.componentList.value.length,
+          itemBuilder: (context, index) =>
+              ItemCard(component: componentListController.componentList[index]),
+        ),
+      )
     );
   }
 }
