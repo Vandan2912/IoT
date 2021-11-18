@@ -8,6 +8,8 @@ class Searchpage extends StatefulWidget {
 }
 
 class _SearchpageState extends State<Searchpage> {
+
+
   List component = [
     {
       "img": "images/arduino-UNO.jpg",
@@ -262,91 +264,104 @@ class ItemListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double sideLength = 150;
     return Expanded(
         child: ListView.builder(
             itemCount: 17,
             itemBuilder: (_, i) {
-              return Container(
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(15),
-                width: double.infinity,
-                height: 175,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white54,
-                    border: Border.all(color: Colors.grey.withOpacity(0.5)),
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 3,
-                          offset: Offset(5, 5),
-                          color: Colors.black.withOpacity(0.1))
-                    ]),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          info[i]['img'],
-                          height: 60,
-                          width: 60,
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Flexible(
-                          child: Text(
-                            info[i]['title'],
+              return ElevatedButton(
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(15),
+                  width: double.infinity,
+                  height: sideLength,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white54,
+                      border: Border.all(color: Colors.grey.withOpacity(0.5)),
+                      boxShadow: [
+                        BoxShadow(
+                            blurRadius: 3,
+                            offset: Offset(5, 5),
+                            color: Colors.black.withOpacity(0.1))
+                      ]),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Image.asset(
+                            info[i]['img'],
+                            height: 60,
+                            width: 60,
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Flexible(
+                            child: Text(
+                              info[i]['title'],
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      Expanded(child: Container()),
+                      Row(
+                        children: [
+                          Text(
+                            info[i]['available'],
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                    Expanded(child: Container()),
-                    Row(
-                      children: [
-                        Text(
-                          info[i]['available'],
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
+                          Expanded(child: Container()),
+                          Text(
+                            info[i]['total'],
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        Expanded(child: Container()),
-                        Text(
-                          info[i]['total'],
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            'Available',
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          'Available',
-                          style: TextStyle(
-                            fontSize: 14,
+                          Expanded(child: Container()),
+                          const Text(
+                            'Total Pcs',
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
-                        Expanded(child: Container()),
-                        const Text(
-                          'Total Pcs',
-                          style: TextStyle(
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
                 ),
+                onPressed: () {
+                  setState(() {
+                    sideLength == 150 ? sideLength = 200 : sideLength = 150;
+                  });
+                },
               );
             }));
   }
+
 }
+
+void setState(Null Function() param0) {
+}
+
 
 class EnrollListView extends StatelessWidget {
   const EnrollListView({
