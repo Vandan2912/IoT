@@ -13,7 +13,10 @@ class _UpdatepageState extends State<Updatepage> {
     return const Icon(
       Icons.update_rounded,
       size: 150,
-      color: Colors.white,
+      color: Colors.black,
     );
   }
 }
+
+
+

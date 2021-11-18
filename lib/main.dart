@@ -38,7 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
   static const List<Widget> _pages = <Widget>[
-    Homepage(),
     Searchpage(),
     Updatepage(),
   ];
@@ -56,11 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
       BottomNavigationBar(
         backgroundColor: Colors.grey.shade800,
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
-            label: 'Home',
-            activeIcon: Icon(Icons.home_rounded,color: Colors.white,)
-          ),
           BottomNavigationBarItem(
               icon: Icon(Icons.search_rounded),
               label: 'search',
