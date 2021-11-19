@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class Searchpage extends StatefulWidget {
@@ -269,7 +270,8 @@ class ItemListView extends StatelessWidget {
         child: ListView.builder(
             itemCount: 17,
             itemBuilder: (_, i) {
-              return ElevatedButton(
+              return InkWell(
+                onTap: () => showModalBottomSheet(context: context, builder: (context) => buildSheet()),
                 child: Container(
                   margin: EdgeInsets.all(10),
                   padding: EdgeInsets.all(15),
@@ -348,19 +350,25 @@ class ItemListView extends StatelessWidget {
                     ],
                   ),
                 ),
-                onPressed: () {
-                  setState(() {
-                    sideLength == 150 ? sideLength = 200 : sideLength = 150;
-                  });
-                },
               );
             }));
   }
 
+  Widget buildSheet() => Container(
+    color: const Color(0xFF737373),
+    child: Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        )
+      ),
+    ),
+  );
 }
 
-void setState(Null Function() param0) {
-}
+
 
 
 class EnrollListView extends StatelessWidget {
