@@ -14,8 +14,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // List<Component> componentlist = Provider.of<List<Component>>(context) ;
-    final componentListController = Get.put(ComponentController());
+    final ComponentController componentListController = Get.find();
     print(componentListController.componentList.value);
     return Scaffold(
       appBar: AppBar(

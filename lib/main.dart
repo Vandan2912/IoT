@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iot/screens/home.dart';
 import 'package:iot/screens/search.dart';
 import 'package:iot/screens/update.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:iot/services/database.dart';
 import 'package:provider/provider.dart';
 
+import 'controller/component_list_controller.dart';
 import 'model/component.dart';
 
 void main() {
@@ -37,6 +39,7 @@ class _AppState extends State<App> {
         }
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
+          final componentListController = Get.put(ComponentController());
           return IoT();
         }
         // Otherwise, show something whilst waiting for initialization to complete
@@ -79,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const List<Widget> _pages = <Widget>[
     HomePage(),
     Searchpage(),
-    Updatepage(),
+    CameraWidget(),
   ];
   @override
   Widget build(BuildContext context) {
